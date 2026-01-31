@@ -1,3 +1,4 @@
+
 /* pshs -- file index generation
  * (c) 2011 Michał Górny
  * SPDX-License-Identifier: GPL-2.0-or-later
@@ -17,6 +18,10 @@
 
 #include "index.h"
 
+#ifdef HAVE_CUSTOPEN
+#define CUSTOM_NETFILE "netfile"
+#endif
+
 /* Building parts of the index page. */
 
 const char head[] = "<!DOCTYPE html>\n"
@@ -32,15 +37,33 @@ const char head[] = "<!DOCTYPE html>\n"
 					"bottom: 1cm;"
 					"z-index: -1000;"
 				"}"
+#ifdef HAVE_CUSTOPEN
+                ".custom {"
+                    "color: red;"
+                "}"
+                "ol {"
+                    "padding: 2em 4em 2em 4em;"
+                "}"
+                "ol.clickable:hover {"
+                    "color: red;"
+                "}"
+#endif
 			"</style>"
 		"</head>"
 		"<body>"
+#ifdef HAVE_CUSTOPEN
+			"<ol class=\"clickable\">";
+#else
 			"<ol>";
+#endif
 
 const char tail[] =
 			"</ol>"
 			"<address>pshs</address>"
 		"</body>"
+#ifdef HAVE_CUSTOPEN
+    #include "js.tmpl"
+#endif
 	"</html>";
 
 /* Building parts of a single link. */

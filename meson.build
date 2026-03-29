@@ -35,6 +35,8 @@ conf_data.set('HAVE_LIBSSL',
               crypto.found() and ssl.found() and libevent_ssl.found())
 conf_data.set('HAVE_LIBQRENCODE', qrencode.found())
 
+conf_data.set('HAVE_CUSTOPEN', get_option('linkcustom').enabled())
+
 configure_file(output: 'config.h', configuration: conf_data)
 
 executable('pshs',

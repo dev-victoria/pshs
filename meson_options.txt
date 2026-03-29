@@ -14,3 +14,7 @@ option('upnp',
        type: 'feature',
        description: 'Use libminiupnpc to forward ports via UPnP',
        value: 'auto')
+option('linkcustom',
+       type: 'feature',
+       description: 'Add custom page link opening feature',
+       value: 'auto')
